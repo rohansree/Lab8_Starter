@@ -4,4 +4,6 @@
 
 2. I would NOT use an E2E test to check if a function is returning the correct output. End to End tests are for the whole application, not for individual functions.
 
-3. 
+3. I would not use a unit test to test the "message" feature. Unit testing is for individual actions, but sending a message involves writing, delivering, and receiving a message, which would be better served by multiple different unit tests.
+
+4. I would use a unit test to test the max message length feature of a messaging application. It is one encapsulated part of the application, and it only involves one function, so it is a good fit for unit testing.
