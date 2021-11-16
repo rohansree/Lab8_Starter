@@ -70,15 +70,21 @@ describe('Basic user flow for Website', () => {
     // Once you have the innerText property, use innerText['_remoteObject'].value to get the text value of it
 
     const firstProdItem = await page.$('product-item');
-    let shadow = firstProdItem.getProperty('shadowRoot');
-    let button = shadow.$('button');
-    const resp = await button.click();
+    let shadowRoot = await firstProdItem.getProperty('shadowRoot');
+    //console.log(shadowRoot); shadowRoot is element handle object
+    let button = await shadowRoot.$('button');
+    // console.log(button);
+    // const resp =  page.click(button);
+    await button.click();
 
-    let buttonText = button.getProperty('innerText');
+    let buttonText = await button.getProperty('innerText');
+    // console.log(buttonText);
+    // console.log("Button Text is :"+buttonText['_remoteObject'].value);
 
     expect(buttonText['_remoteObject'].value).toBe('Remove from Cart');
     // response.
 
+    // expect(false).toBe(true);
 
   }, 2500);
 
@@ -93,11 +99,12 @@ describe('Basic user flow for Website', () => {
 
     const prodItems = await page.$$('product-item');
 
-    for(let iter = 1; i < prodItems.length; i++)
+    for(let i = 1; i < prodItems.length; i++)
     {
       
       let shadow = prodItems[i].$(ShadowRoot);
       let button = shadow.querySelector('button');
+      console.log(button);
 
     }
 
